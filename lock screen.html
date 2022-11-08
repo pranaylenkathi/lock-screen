@@ -1,0 +1,138 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Lock Screen</title>
+    </head>
+    <body>
+        <div id="setPas">
+Enter a password:<br>
+(Min length:4, max:8)<br>
+<input id="pass" type="number"placeholder="Password" maxlength="8">
+<br><button onclick="SetPas()">Start</button></div>
+<div id="lockscreen">
+<h2 id="txt"style="color:white">Enter the password</h2>
+<div id="circles"></div>
+<div id="nums">
+<div class="num">1</div>
+<div class="num">2</div>
+<div class="num">3</div><br>
+<div class="num">4</div>
+<div class="num">5</div>
+<div class="num">6</div><br>
+<div class="num">7</div>
+<div class="num">8</div>
+<div class="num">9</div><br>
+<div class="num">0</div>
+<div id="del" onclick="clearPas()">Delete</div>
+</div></div>
+<style type="text/css">
+body{
+text-align:center;
+color:white;
+background:rgb(72, 101, 178);
+-webkit-touch-callout:none;
+-webkit-user-select:none;
+user-select:none;
+touch-callout:none;}
+input{
+width:250px;
+height:45px;
+margin:10px;
+border:1px solid white;
+border-radius:5px;
+box-shadow:0 0 5px black;}
+button{
+width:220px;
+height:50px;
+font-size:25px;
+border-radius:30px;
+background:navy;
+border:1px solid navy;
+color:white;}
+#del{
+width:100px;
+font-size:32px;
+padding:15px;
+color:white;
+display:inline-block;
+margin:8px;
+border:1px solid white;
+border-radius:50px;}
+#circles{
+margin-bottom:10px;}
+#lockscreen{
+width:100%;
+display:none;
+background:url("https://hdqwalls.com/download/colorful-abstract-240x400.jpg");
+top:-150%;left:0;
+position:absolute;}
+.circle{
+width:25px;
+height:25px;
+border-radius:15px;
+display:inline-block;
+margin:5px;
+border:1px solid white;
+background:none;
+box-shadow:0 0 5px grey;}
+.num{
+width:38px;
+font-size:32px;
+padding:15px;
+color:white;
+display:inline-block;
+margin:8px;
+border:1px solid white;
+border-radius:50px;}
+.num:hover{
+background:white;
+color:rgb(72, 101, 178);}
+</style>
+<script type="text/javascript">
+var pas;
+var cpas = "";
+var pascount = 0;
+var circle;
+var num = document.querySelectorAll(".num");
+lockscreen.style.WebkitTransition = "top 1s";
+function SetPas(){
+pas = pass.value;
+if(pas.length >= 4){
+lockscreen.style.display = "block";
+setTimeout(function(){
+lockscreen.style.top ="0%";},25);
+setPas.style.display = "none";Pas()}
+else{
+alert("Min password length is 4!")}}
+function Pas(){
+txt.innerHTML = "Enter the password";
+circles.innerHTML = "";
+for(var i=0;i<pas.length;i++){
+circles.innerHTML += "<div class=circle></div>";}
+circle = document.querySelectorAll(".circle");
+for(var i=0;i<num.length;i++){
+num[i].onmouseup=function(){
+cpas+=this.innerHTML;
+circle[pascount].style.background = "white";
+if(pascount != pas.length-1){
+pascount++;}
+else{
+setTimeout(function(){
+if(cpas == pas){
+openScreen()}
+else{
+txt.innerHTML = "Wrong Password!"}
+clearPas()},200)}}}}
+function clearPas(){
+for(var i=0;i<circle.length;i++){
+circle[i].style.background = "none";}
+cpas = "";
+pascount = 0;}
+function openScreen(){
+lockscreen.style.top ="-150%";
+setTimeout(function(){
+lockscreen.style.display = "none";},1000);
+setPas.style.display = "block";}
+</script>
+    </body>
+</html>
